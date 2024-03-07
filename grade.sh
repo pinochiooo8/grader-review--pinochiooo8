@@ -27,6 +27,11 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+java -cp ".:/path/to/junit.jar:/path/to/other/dependencies" org.junit.runner.JUnitCore $(basename $TEST_FILE_NAME .java)
 
-java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples
+if [ $? -eq 0 ]; then
+    echo "All tests passed. Great job!"
+else
+    echo "Some tests failed. Please review the test output above for details."
+fi
 
